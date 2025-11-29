@@ -1,0 +1,31 @@
+## Visual Studio / .NET
+bin/
+obj/
+publish/
+*.user
+*.suo
+*.cache
+*.pdb
+*.exe
+*.nupkg
+.vs/
+_ReSharper*/
+/*_ReSharper*/
+*.db
+
+# Rider
+.idea/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Node (if any)
+node_modules/
+
+# Logs
+*.log
+
+# Sensitive files
+**/settings.json
+**/ai_history.json

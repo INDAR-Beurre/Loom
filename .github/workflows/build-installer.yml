@@ -1,0 +1,55 @@
+name: Build Windows Installer (Inno Setup)
+
+on:
+  workflow_dispatch: {}
+  push:
+    tags:
+      - 'v*'
+
+jobs:
+  build-installer:
+    name: Publish + Build Installer (Windows)
+    runs-on: windows-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v3
+        with:
+          dotnet-version: '6.0.x'
+
+      - name: Restore / Publish (Release, win-x64)
+        run: |
+          dotnet restore Loom.csproj
+          dotnet publish Loom.csproj -c Release -r win-x64 -p:PublishSingleFile=true -p:SelfContained=true -p:PublishTrimmed=false -o ./publish/win-x64/Release
+
+      - name: Install Inno Setup (chocolatey)
+        shell: powershell
+        run: |
+          Set-ExecutionPolicy Bypass -Scope Process -Force
+          choco install innosetup -y
+          choco --version
+
+      - name: Run build-installer.ps1
+        shell: powershell
+        run: |
+          Set-ExecutionPolicy Bypass -Scope Process -Force
+          .\scripts\build-installer.ps1 -Configuration Release -Runtime win-x64
+
+      - name: Find generated installer
+        shell: powershell
+        run: |
+          Write-Host "Looking for built installer..."
+          $files = Get-ChildItem -Path . -Recurse -Filter "*Loom*.exe" | Sort-Object LastWriteTime -Descending
+          if ($files.Count -eq 0) { Write-Host "No installer found"; exit 1 }
+          $files | Select-Object -First 5 | Format-Table FullName,Length,LastWriteTime
+          $installer = $files[0].FullName
+          Write-Host "::set-output name=installer::$installer"
+        id: find-installer
+
+      - name: Upload installer artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: loom-windows-installer
+          path: ${{ steps.find-installer.outputs.installer }}

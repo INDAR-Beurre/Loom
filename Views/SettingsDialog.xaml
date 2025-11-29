@@ -1,0 +1,38 @@
+<Window x:Class="LoomBrowser.Views.SettingsDialog"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Settings" Height="300" Width="480" WindowStartupLocation="CenterOwner" Background="#0f2f1f">
+    <Grid Margin="12">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <TextBlock Text="Settings" FontSize="18" FontWeight="Bold" Foreground="#d8ffd7" />
+
+        <StackPanel Grid.Row="1" Margin="0,12,0,0">
+            <TextBlock Text="Supabase Project" Foreground="#cfeede" FontWeight="Bold" />
+            <TextBlock Text="URL" Foreground="#cfeede" />
+            <TextBox x:Name="SupabaseUrlBox" Height="26" Background="#0b3e2a" Foreground="#e6ffe9" />
+            <TextBlock Text="Anon/public key" Foreground="#cfeede" Margin="0,6,0,0" />
+            <PasswordBox x:Name="SupabaseAnonBox" Height="26" Background="#0b3e2a" Foreground="#e6ffe9" />
+
+            <TextBlock Text="Groq API Key" Foreground="#cfeede" />
+            <PasswordBox x:Name="ApiKeyBox" Height="28" Background="#0b3e2a" Foreground="#e6ffe9" />
+
+            <TextBlock Text="Model" Margin="0,8,0,0" Foreground="#cfeede" />
+            <ComboBox x:Name="ModelCombo" Height="28" Background="#0b3e2a" Foreground="#e6ffe9">
+                <ComboBoxItem Content="llama3-8b-8192" />
+                <ComboBoxItem Content="llama3-70b-8192" />
+                <ComboBoxItem Content="mixtral-8x7b-32768" />
+                <ComboBoxItem Content="gemma-7b-it" />
+            </ComboBox>
+        </StackPanel>
+
+        <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,8,0,0">
+            <Button x:Name="SaveButton" Content="Save" Width="90" Height="30" Margin="8,0" Click="SaveButton_Click" Background="#1c7a46" Foreground="White" Style="{StaticResource RoundedButton}"/>
+            <Button Content="Close" Width="90" Height="30" Click="Close_Click" />
+        </StackPanel>
+    </Grid>
+</Window>

@@ -1,0 +1,30 @@
+<Window x:Class="LoomBrowser.Views.SignInDialog"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Account" Height="260" Width="420" WindowStartupLocation="CenterOwner" Background="#0f2f1f">
+    <Grid Margin="12">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <TextBlock Text="Sign in / Sign up" FontWeight="Bold" Foreground="#d8ffd7" FontSize="16" />
+
+        <StackPanel Grid.Row="1" Margin="0,12,0,0">
+            <TextBlock Text="Email" Foreground="#cfeede" />
+            <TextBox x:Name="EmailBox" Height="28" Background="#0b3e2a" Foreground="#e6ffe9" />
+
+            <TextBlock Text="Password" Margin="0,8,0,0" Foreground="#cfeede" />
+            <PasswordBox x:Name="PasswordBox" Height="28" Background="#0b3e2a" Foreground="#e6ffe9" />
+
+            <TextBlock x:Name="StatusText" Text="" Foreground="#e6ffe9" Opacity="0.9" Margin="0,8,0,0" FontSize="12"/>
+        </StackPanel>
+
+        <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Right">
+            <Button x:Name="SignInBtn" Content="Sign in" Width="100" Height="32" Margin="8,0" Click="SignInBtn_Click" Style="{StaticResource RoundedButton}" />
+            <Button x:Name="SignUpBtn" Content="Sign up" Width="100" Height="32" Margin="8,0" Click="SignUpBtn_Click" Style="{StaticResource RoundedButton}" />
+            <Button Content="Close" Width="90" Height="32" Click="Close_Click" Style="{StaticResource RoundedButton}"/>
+        </StackPanel>
+    </Grid>
+</Window>

@@ -1,0 +1,159 @@
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+  <!-- Colors -->
+  <Color x:Key="PrimaryGreen">#39D07B</Color>
+  <Color x:Key="PrimaryGreenDark">#0f5132</Color>
+  <Color x:Key="Accent">#16a34a</Color>
+  <Color x:Key="Surface">#061614</Color>
+  <Color x:Key="SurfaceAccent">#083425</Color>
+  <Color x:Key="OnSurface">#e9ffef</Color>
+  <Color x:Key="MutedText">#9dd7b3</Color>
+  <Color x:Key="GlassHighlight">#1a8266</Color>
+
+  <!-- Default Rounded Button Style (applies to all Buttons if no other style is specified) -->
+  <Style TargetType="Button">
+    <Setter Property="Margin" Value="4"/>
+    <Setter Property="MinWidth" Value="40"/>
+    <Setter Property="MinHeight" Value="36"/>
+    <Setter Property="SnapsToDevicePixels" Value="True"/>
+    <Setter Property="HorizontalContentAlignment" Value="Center"/>
+    <Setter Property="VerticalContentAlignment" Value="Center"/>
+    <Setter Property="Template">
+      <Setter.Value>
+        <ControlTemplate TargetType="Button">
+          <Grid RenderTransformOrigin="0.5,0.5">
+            <Border x:Name="bg" Background="{TemplateBinding Background}" CornerRadius="999" SnapsToDevicePixels="True" Padding="6">
+              <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" RecognizesAccessKey="True"/>
+            </Border>
+            <Border x:Name="glow" CornerRadius="999" Background="Transparent" Opacity="0" IsHitTestVisible="False"/>
+          </Grid>
+          <ControlTemplate.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+              <Setter TargetName="bg" Property="Background" Value="{StaticResource Accent}"/>
+              <Setter TargetName="glow" Property="Opacity" Value="0.9"/>
+            </Trigger>
+            <Trigger Property="IsPressed" Value="True">
+              <Setter TargetName="bg" Property="RenderTransform">
+                <Setter.Value>
+                  <ScaleTransform ScaleX="0.985" ScaleY="0.985"/>
+                </Setter.Value>
+              </Setter>
+            </Trigger>
+            <Trigger Property="IsEnabled" Value="False">
+              <Setter TargetName="bg" Property="Opacity" Value="0.5"/>
+            </Trigger>
+          </ControlTemplate.Triggers>
+        </ControlTemplate>
+      </Setter.Value>
+    </Setter>
+    <Setter Property="Background" Value="{StaticResource PrimaryGreenDark}"/>
+    <Setter Property="Foreground" Value="{StaticResource OnSurface}"/>
+    <Setter Property="FontWeight" Value="SemiBold"/>
+    <Setter Property="Cursor" Value="Hand"/>
+  </Style>
+
+  <!-- Backwards-compatible named style kept in case some controls referenced it directly earlier -->
+  <Style x:Key="RoundedButton" TargetType="Button" BasedOn="{StaticResource {x:Type Button}}">
+    <Setter Property="Background" Value="{StaticResource PrimaryGreenDark}"/>
+    <Setter Property="Foreground" Value="{StaticResource OnSurface}"/>
+    <Setter Property="Padding" Value="12,6"/>
+    <Setter Property="BorderThickness" Value="0"/>
+    <Setter Property="FontWeight" Value="SemiBold"/>
+    <Setter Property="FontFamily" Value="Segoe UI Variable"/>
+    <Setter Property="Cursor" Value="Hand"/>
+    <Setter Property="Template">
+      <Setter.Value>
+        <ControlTemplate TargetType="Button">
+          <Grid RenderTransformOrigin="0.5,0.5">
+            <Border x:Name="bg" Background="{TemplateBinding Background}" CornerRadius="18" SnapsToDevicePixels="True" Padding="2">
+              <Grid>
+                <Border CornerRadius="16" Background="#0f2b22" Opacity="0.06"/>
+                <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" RecognizesAccessKey="True"/>
+              </Grid>
+            </Border>
+            <!-- subtle glow layer -->
+            <Border x:Name="glow" CornerRadius="18" Background="Transparent" Opacity="0" IsHitTestVisible="False">
+              <Border.Effect>
+                <DropShadowEffect Color="{StaticResource PrimaryGreen}" BlurRadius="18" ShadowDepth="0" Opacity="0.35"/>
+              </Border.Effect>
+            </Border>
+          </Grid>
+          <ControlTemplate.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+              <Setter TargetName="bg" Property="Background" Value="{StaticResource Accent}"/>
+              <Setter TargetName="glow" Property="Opacity" Value="1"/>
+            </Trigger>
+            <Trigger Property="IsPressed" Value="True">
+              <Setter TargetName="bg" Property="RenderTransform">
+                <Setter.Value>
+                  <ScaleTransform ScaleX="0.99" ScaleY="0.99"/>
+                </Setter.Value>
+              </Setter>
+            </Trigger>
+            <Trigger Property="IsEnabled" Value="False">
+              <Setter TargetName="bg" Property="Opacity" Value="0.5"/>
+            </Trigger>
+          </ControlTemplate.Triggers>
+        </ControlTemplate>
+      </Setter.Value>
+    </Setter>
+  </Style>
+
+  <!-- TextBox style for rounded search boxes -->
+  <Style TargetType="TextBox" x:Key="RoundedTextBox">
+    <Setter Property="Background" Value="Transparent"/>
+    <Setter Property="Foreground" Value="{StaticResource OnSurface}"/>
+    <Setter Property="BorderThickness" Value="0"/>
+    <Setter Property="FontFamily" Value="Segoe UI Variable"/>
+    <Setter Property="FontSize" Value="15"/>
+    <Setter Property="Padding" Value="6"/>
+  </Style>
+
+  <!-- Search bar container style -->
+  <Style TargetType="Border" x:Key="SearchContainer">
+    <Setter Property="CornerRadius" Value="28"/>
+    <Setter Property="Background" Value="{StaticResource Surface}"/>
+    <Setter Property="BorderBrush" Value="{StaticResource SurfaceAccent}"/>
+    <Setter Property="BorderThickness" Value="1"/>
+    <Setter Property="Padding" Value="6"/>
+    <Setter Property="Effect">
+      <Setter.Value>
+        <DropShadowEffect Color="#051a0f" BlurRadius="36" ShadowDepth="0" Opacity="0.28"/>
+      </Setter.Value>
+    </Setter>
+  </Style>
+
+  <!-- Window-level background gradient -->
+  <LinearGradientBrush x:Key="WindowBackground" StartPoint="0,0" EndPoint="1,1">
+    <GradientStop Color="#051411" Offset="0"/>
+    <GradientStop Color="#083826" Offset="1"/>
+  </LinearGradientBrush>
+
+  <!-- Subtle accent gradient for panels -->
+  <LinearGradientBrush x:Key="PanelAccent" StartPoint="0,0" EndPoint="1,1">
+    <GradientStop Color="#082d21" Offset="0"/>
+    <GradientStop Color="#0b462e" Offset="1"/>
+  </LinearGradientBrush>
+
+  <!-- Title text style -->
+  <Style TargetType="TextBlock" x:Key="WindowTitle">
+    <Setter Property="FontFamily" Value="Segoe UI Variable"/>
+    <Setter Property="FontSize" Value="15"/>
+    <Setter Property="FontWeight" Value="Bold"/>
+    <Setter Property="Foreground" Value="{StaticResource OnSurface}"/>
+  </Style>
+
+  <!-- Soft label text -->
+  <Style TargetType="TextBlock" x:Key="MutedLabel">
+    <Setter Property="FontFamily" Value="Segoe UI"/>
+    <Setter Property="FontSize" Value="12"/>
+    <Setter Property="Foreground" Value="{StaticResource MutedText}"/>
+  </Style>
+
+  <!-- Animated fade in -->
+  <Storyboard x:Key="FadeInStoryboard">
+    <DoubleAnimation From="0" To="1" Duration="0:0:0.35" Storyboard.TargetProperty="Opacity"/>
+  </Storyboard>
+
+</ResourceDictionary>

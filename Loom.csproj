@@ -1,0 +1,26 @@
+<Project Sdk="Microsoft.NET.Sdk.WindowsDesktop">
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net6.0-windows</TargetFramework>
+    <!-- Package / release metadata for v1.0.0 -->
+    <Version>1.0.0</Version>
+    <Authors>you</Authors>
+    <Company>Loom</Company>
+    <AssemblyTitle>Loom Browser</AssemblyTitle>
+    <Nullable>enable</Nullable>
+    <UseWPF>true</UseWPF>
+    <ImplicitUsings>enable</ImplicitUsings>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <!-- WebView2 package (WPF & WinForms) -->
+    <PackageReference Include="Microsoft.Web.WebView2" Version="1.0.1407.20" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <!-- Ensure HTML content is copied to the output so the WebView can load it -->
+    <None Include="index-fixed.html">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+</Project>

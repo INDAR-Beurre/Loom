@@ -1,0 +1,27 @@
+{
+  "version": 2,
+  "dgSpecHash": "bbHCh/O8vTA=",
+  "success": true,
+  "projectFilePath": "C:\\Users\\alexa\\OneDrive\\Dokumente\\Loom\\Loom.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\alexa\\.nuget\\packages\\microsoft.web.webview2\\1.0.1418.22\\microsoft.web.webview2.1.0.1418.22.nupkg.sha512",
+    "C:\\Users\\alexa\\.nuget\\packages\\microsoft.netcore.app.ref\\6.0.36\\microsoft.netcore.app.ref.6.0.36.nupkg.sha512",
+    "C:\\Users\\alexa\\.nuget\\packages\\microsoft.windowsdesktop.app.ref\\6.0.36\\microsoft.windowsdesktop.app.ref.6.0.36.nupkg.sha512",
+    "C:\\Users\\alexa\\.nuget\\packages\\microsoft.aspnetcore.app.ref\\6.0.36\\microsoft.aspnetcore.app.ref.6.0.36.nupkg.sha512",
+    "C:\\Users\\alexa\\.nuget\\packages\\microsoft.netcore.app.host.win-x64\\6.0.36\\microsoft.netcore.app.host.win-x64.6.0.36.nupkg.sha512"
+  ],
+  "logs": [
+    {
+      "code": "NU1603",
+      "level": "Warning",
+      "message": "Loom depends on Microsoft.Web.WebView2 (>= 1.0.1407.20) but Microsoft.Web.WebView2 1.0.1407.20 was not found. Microsoft.Web.WebView2 1.0.1418.22 was resolved instead.",
+      "projectPath": "C:\\Users\\alexa\\OneDrive\\Dokumente\\Loom\\Loom.csproj",
+      "warningLevel": 1,
+      "filePath": "C:\\Users\\alexa\\OneDrive\\Dokumente\\Loom\\Loom.csproj",
+      "libraryId": "Microsoft.Web.WebView2",
+      "targetGraphs": [
+        "net6.0-windows7.0"
+      ]
+    }
+  ]
+}
